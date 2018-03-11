@@ -29,9 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         sqLiteDatabase.execSQL(query);
         query = "Create table product (product_id integer primary key, price integer, category text, brand text, model text)";
         sqLiteDatabase.execSQL(query);
-        query = "Create table returns (return_id integer primary key, order_id integer, product_id integer, return_date integer, customer_id integer)";
-        sqLiteDatabase.execSQL(query);
-    }
+        }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1)
@@ -41,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
     public void addCustomer(customer customer)
     {
-        Log.d("Worked","Addfunction");
+        Log.d("Worked","AddCustomer");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("customer_id",customer.getCustomer_id());
@@ -53,4 +51,30 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
 
     }
+    public void addOrder(orders order)
+    {
+        Log.d("Worked","AddOrder");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("order_id",order.getOrder_id());
+        values.put("product_id",order.getOrder_id());
+        values.put("order_date",order.getOrder_date());
+        values.put("customer_id",order.getCustomer_id());
+        db.insert("orders",null,values);
+        db.close();
+    }
+    public void addProduct(product product)
+    {
+        Log.d("Worked","AddOrder");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("product_id",product.getProduct_id());
+        values.put("price",product.getPrice());
+        values.put("category",product.getCategory());
+        values.put("brand",product.getBrand());
+        values.put("model",product.getModel());
+        db.insert("orders",null,values);
+        db.close();
+    }
+
 }
