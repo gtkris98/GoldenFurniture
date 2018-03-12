@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "672908581126",
+    "firebase_url": "https://goldenfurniture-8ef7d.firebaseio.com",
+    "project_id": "goldenfurniture-8ef7d",
+    "storage_bucket": "goldenfurniture-8ef7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672908581126:android:9669d739f2e61a74",
+        "android_client_info": {
+          "package_name": "com.example.muj.goldenfurniture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672908581126-imhqgcr5tq57bfcpf5fp7dt35jdvn6p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAja0GbSeHp9HYp4rWyvnMtadMfAB2CYEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
