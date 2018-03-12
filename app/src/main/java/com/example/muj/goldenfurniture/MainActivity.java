@@ -28,13 +28,6 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() != null)
-        {
-            finish();
-            Intent intent = new Intent(this,furniture.class);
-            startActivity(intent);
-        }
 
         Button login = findViewById(R.id.button_login);
         TextView register = findViewById(R.id.register);
@@ -59,6 +52,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() != null)
+        {
+            finish();
+            Intent intent = new Intent(this,furniture.class);
+            startActivity(intent);
+        }
+    }
+
     private void userLogin()
     {
         String email = loginEmail.getText().toString().trim();
