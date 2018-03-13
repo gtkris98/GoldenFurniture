@@ -60,6 +60,7 @@
         android:text="Don't have an account? Sign up."/>
 
     <TextView
+        android:id="@+id/tv_forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Forgot Password?"

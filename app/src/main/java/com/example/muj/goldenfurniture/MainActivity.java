@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
 
         Button login = findViewById(R.id.button_login);
         TextView register = findViewById(R.id.register);
+        TextView forgotPassword = findViewById(R.id.tv_forgot_password);
         loginEmail = findViewById(R.id.et_username);
         loginPassword = findViewById(R.id.et_password);
         progressDialog = new ProgressDialog(this);
@@ -49,6 +50,15 @@ public class MainActivity extends AppCompatActivity
                 finish();
                 Intent intent = new Intent(MainActivity.this,RegisterUser.class);
                 startActivity(intent);
+            }
+        });
+        forgotPassword.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this,ResetPassword.class);
+                startActivity(intent);
+
             }
         });
     }
@@ -94,6 +104,10 @@ public class MainActivity extends AppCompatActivity
                             finish();
                             Intent intent = new Intent(MainActivity.this,furniture.class);
                             startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this,"Authentication Error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
