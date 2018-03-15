@@ -1,6 +1,7 @@
 package com.example.muj.goldenfurniture;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class furniture extends AppCompatActivity {
@@ -34,8 +37,10 @@ public class furniture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_furmiture);
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() == null)
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (firebaseAuth.getCurrentUser() == null && account == null)
         {
+            finish();
             startActivity(new Intent(this,MainActivity.class));
         }
 
@@ -71,7 +76,7 @@ public class furniture extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.logout)
         {
-            firebaseAuth.signOut();
+            firebaseAuth.getInstance().signOut();
             finish();
             startActivity(new Intent(this,MainActivity.class));
         }
