@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture;
+package com.example.muj.goldenfurniture.Database;
 
 public class orders
 {
