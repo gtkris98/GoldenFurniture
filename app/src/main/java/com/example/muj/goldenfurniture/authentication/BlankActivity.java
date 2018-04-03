@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Authentication;
+package com.example.muj.goldenfurniture.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;

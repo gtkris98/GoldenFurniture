@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Database;
+package com.example.muj.goldenfurniture.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -22,7 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-        String query="Create table customer (customer_id integer primary key,customer_name text, phone integer, email text, address text )";
+        String query="Create table Customer (customer_id integer primary key,customer_name text, phone integer, email text, address text )";
         sqLiteDatabase.execSQL(query);
         query = "Create table orders (order_id integer primary key, product_id integer, order_date integer, customer_id integer)";
         sqLiteDatabase.execSQL(query);
@@ -36,7 +36,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
     }
 
-    public void addCustomer(customer customer)
+    public void addCustomer(Customer customer)
     {
         Log.d("Worked","AddCustomer");
         SQLiteDatabase db = this.getWritableDatabase();
@@ -45,8 +45,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         values.put("customer_name",customer.getCustomer_name());
         values.put("phone",customer.getPhone());
         values.put("email",customer.getEmail());
-        values.put("address",customer.getAddress());
-        db.insert("customer", null, values);
+        //values.put("address",Customer.getAddress());
+        db.insert("Customer", null, values);
         db.close();
 
     }

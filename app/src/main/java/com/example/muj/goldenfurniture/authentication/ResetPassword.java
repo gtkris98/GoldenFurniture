@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Authentication;
+package com.example.muj.goldenfurniture.authentication;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

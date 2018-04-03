@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Authentication;
+package com.example.muj.goldenfurniture.authentication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -75,7 +75,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(RegisterUser.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             finish();
-                            Intent intent = new Intent(RegisterUser.this,MainActivity.class);
+                            Intent intent = new Intent(RegisterUser.this,SetupActivity.class);
                             startActivity(intent);
                         }
                         else

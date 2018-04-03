@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Authentication;
+package com.example.muj.goldenfurniture.authentication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -164,9 +164,9 @@ public class MainActivity extends AppCompatActivity
                             //updateUI(user);
                             progress.dismiss();
                             Toast.makeText(MainActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                            finish();
                             Intent intent = new Intent(MainActivity.this,furniture.class);
                             startActivity(intent);
+                            finish();
                         }
                         else
                         {

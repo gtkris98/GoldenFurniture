@@ -1,4 +1,4 @@
-package com.example.muj.goldenfurniture.Database;
+package com.example.muj.goldenfurniture.database;
 
 /**
  * Created by MUJ on 09-Mar-18.
