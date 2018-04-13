@@ -137,6 +137,7 @@ public class SetupActivity extends AppCompatActivity
                 else
                 {
                     Toast.makeText(SetupActivity.this,"Fields cannot be blank",Toast.LENGTH_SHORT).show();
+                    setupprogress.setVisibility(View.INVISIBLE);
                 }
 
             }
@@ -148,6 +149,7 @@ public class SetupActivity extends AppCompatActivity
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1,1)
+                .setOutputCompressQuality(20)
                 .start(SetupActivity.this);
     }
 

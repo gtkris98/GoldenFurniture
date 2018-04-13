@@ -10,11 +10,14 @@ import android.view.MenuItem;
 import com.example.muj.goldenfurniture.authentication.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class furniture extends AppCompatActivity
 {
     private FirebaseAuth firebaseAuth;
+    private GoogleSignInClient googleSignInClient;
+    private GoogleSignInAccount account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,7 +26,9 @@ public class furniture extends AppCompatActivity
         setContentView(R.layout.activity_furniture);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        account = GoogleSignIn.getLastSignedInAccount(this);
+
+
 
         if (firebaseAuth.getCurrentUser() == null && account == null)
         {
@@ -46,6 +51,7 @@ public class furniture extends AppCompatActivity
         if (id == R.id.logout)
         {
             firebaseAuth.getInstance().signOut();
+            googleSignInClient.signOut();
             finish();
             startActivity(new Intent(this,MainActivity.class));
         }

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
+                .requestProfile()
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
+
                             progress.dismiss();
                             Toast.makeText(MainActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this,furniture.class);
