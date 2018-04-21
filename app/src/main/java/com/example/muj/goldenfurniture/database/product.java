@@ -6,46 +6,43 @@ package com.example.muj.goldenfurniture.database;
 
 public class product
 {
-    int product_id,price;
-    String category,brand,model;
+    String brand, category, image, model, size;
+    long price;
 
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
+    public product(String brand, String category, String image, String model, long price, String size) {
+        this.brand = brand;
         this.category = category;
+        this.image = image;
+        this.model = model;
+        this.price = price;
+        this.size = size;
+    }
+
+    public product() {
+
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public String getCategory() {
+        return category;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public long getPrice() {
+        return price;
+    }
+
+    public String getSize() {
+        return size;
     }
 }

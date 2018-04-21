@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+
+
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:contentDescription="Image"
-            tools:src="@drawable/aa"
-            android:scaleType="fitCenter"
             android:id="@+id/image_furniture"
-            android:padding="8dp"
-            android:layout_margin="8dp"
             android:layout_width="80dp"
-            android:layout_height="120dp" />
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:contentDescription="Image"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/aa" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_margin="8dp"
-                android:textSize="20sp"
                 android:id="@+id/tv_furniture_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Golden Furniture Almirah"
-                />
+                android:layout_margin="8dp"
+                android:textSize="20sp"
+                tools:text="Golden Furniture Almirah" />
 
             <TextView
-                android:layout_margin="8dp"
-                android:textSize="12sp"
                 android:id="@+id/tv_furniture_size"
-                tools:text="Size : 61x70x40"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textSize="12sp"
+                tools:text="Size : 61x70x40" />
+
+            <TextView
                 android:id="@+id/tv_furniture_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Rs.15000"/>
+                android:layout_margin="8dp"
+                android:textSize="12sp"
+                tools:text="Rs.15000" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -56,22 +61,28 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        >
 
 
         <Button
+            android:background="@color/lightBlue"
+            android:textColor="@color/white"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="Add to Cart"
             android:layout_weight="1"
-            android:layout_marginRight="8dp"
             android:id="@+id/button_cart"/>
 
         <Button
+            android:background="@color/white"
+            android:textColor="@color/lightBlue"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:text="Buy Now"
             android:id="@+id/button_buy"/>
     </LinearLayout>
+
+
 </LinearLayout>
+

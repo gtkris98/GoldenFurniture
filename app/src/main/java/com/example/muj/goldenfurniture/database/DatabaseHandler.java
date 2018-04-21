@@ -62,18 +62,6 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.insert("orders",null,values);
         db.close();
     }
-    public void addProduct(product product)
-    {
-        Log.d("Worked","AddOrder");
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("product_id",product.getProduct_id());
-        values.put("price",product.getPrice());
-        values.put("category",product.getCategory());
-        values.put("brand",product.getBrand());
-        values.put("model",product.getModel());
-        db.insert("orders",null,values);
-        db.close();
-    }
+
 
 }
