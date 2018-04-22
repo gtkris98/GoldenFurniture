@@ -40,16 +40,13 @@
             android:label="Reset Password" />
         <activity
             android:name=".authentication.SetupActivity"
-            android:label="Setup User"></activity>
-
+            android:label="Setup User" />
         <activity android:name=".ShowProduct" />
-
-
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-        <activity android:name=".BuyNowActivity"></activity>
+        <activity android:name=".BuyNowActivity" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>

@@ -47,23 +47,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class furniture extends AppCompatActivity {
-    private ImageView imageView;
-    private static int imagePosition;
+
     private ProductAdapter productAdapter;
     private AlertDialog alertDialog;
     private ListView listView;
     private ProgressDialog progressBar;
     ArrayList<product> productList;
-    LayoutInflater inflater;
-    View alertLayout;
     AlertDialog.Builder builder;
 
     private FirebaseAuth firebaseAuth;
     private GoogleSignInAccount account;
 
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private ChildEventListener childEventListener;
+    private static int currentSort;
 
 
     @Override
@@ -76,7 +71,6 @@ public class furniture extends AppCompatActivity {
 
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(this, R.layout.list_item, productList);
-        showDialog(1);
         getProducts();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -90,8 +84,6 @@ public class furniture extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == 1) {
@@ -103,7 +95,12 @@ public class furniture extends AppCompatActivity {
         return progressBar;
     }
 
-    private void getProducts() {
+    private void getProducts() {//sort value = 0
+        currentSort = 0;
+        showDialog(1);
+        productList.clear();
+        productAdapter.clear();
+        listView.setAdapter(productAdapter);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -137,7 +134,8 @@ public class furniture extends AppCompatActivity {
         return;
     }
 
-    private void getProductsAsc() {
+    private void getProductsAsc() {//sort value 1
+        currentSort = 1;
         showDialog(1);
         productList.clear();
         productAdapter.clear();
@@ -175,7 +173,8 @@ public class furniture extends AppCompatActivity {
         return;
     }
 
-    private void getProductsDesc() {
+    private void getProductsDesc() {//sort value 2
+        currentSort = 2;
         showDialog(1);
         productList.clear();
         productAdapter.clear();
@@ -235,18 +234,33 @@ public class furniture extends AppCompatActivity {
     }
 
     private void sortProducts() {
-        String[] options = {"Price Ascending", "Price Descending"};
+        String[] options = {"Default","Price Ascending", "Price Descending",};
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Sort By")
-                .setSingleChoiceItems(options, 1, new DialogInterface.OnClickListener() {
+                .setSingleChoiceItems(options, currentSort, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which == 0) {
-                            getProductsAsc();
+                        if (which == 0)
+                        {
+                            if (currentSort != 0)
+                                getProducts();
                             alertDialog.dismiss();
-                        } else if (which == 1) {
-                            getProductsDesc();
+
+                        }
+                        else if (which == 1)
+                        {
+                            if (currentSort != 1)
+                                getProductsAsc();
                             alertDialog.dismiss();
+
+                        }
+                        else if (which == 2)
+                        {
+                            if (currentSort != 2)
+                                getProductsDesc();
+                            alertDialog.dismiss();
+
+
                         }
                     }
                 });
