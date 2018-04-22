@@ -50,18 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
 
     }
-    public void addOrder(orders order)
-    {
-        Log.d("Worked","AddOrder");
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("order_id",order.getOrder_id());
-        values.put("product_id",order.getOrder_id());
-        values.put("order_date",order.getOrder_date());
-        values.put("customer_id",order.getCustomer_id());
-        db.insert("orders",null,values);
-        db.close();
-    }
+
 
 
 }

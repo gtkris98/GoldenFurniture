@@ -86,18 +86,10 @@ public class furniture extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-        });
 
     }
 
-    private void showImage() {
-
-    }
 
 
     @Override
@@ -184,7 +176,7 @@ public class furniture extends AppCompatActivity {
     }
 
     private void getProductsDesc() {
-
+        showDialog(1);
         productList.clear();
         productAdapter.clear();
         listView.setAdapter(productAdapter);
@@ -204,7 +196,6 @@ public class furniture extends AppCompatActivity {
                             productList.add(productSnapshot.getValue(product.class));
                         }
                         Collections.reverse(productList);
-                        //productAdapter = new com.example.muj.goldenfurniture.ProductAdapter(furniture.this, productList);
                         listView.setAdapter(productAdapter);
                         progressBar.cancel();
                     }
@@ -263,11 +254,7 @@ public class furniture extends AppCompatActivity {
         alertDialog = builder.create();
 
     }
-    private void showImageDialog(int imagePosition)
-    {
 
-
-    }
 
 
 
