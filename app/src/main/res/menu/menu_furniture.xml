@@ -4,8 +4,13 @@
     tools:context="com.example.muj.goldenfurniture.furniture">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_cart"
+        android:orderInCategory="2"
+        android:title="My Cart"
         app:showAsAction="never" />
     <item
         android:id="@+id/my_account"
@@ -15,20 +20,20 @@
         />
     <item
         android:id="@+id/my_order"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="My Orders"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/logout"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="Logout"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/filter"
         android:orderInCategory="1"
-        android:title="Filter"
+        android:title="Category"
         app:showAsAction="always"
         />
     <item

@@ -44,6 +44,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class furniture extends AppCompatActivity {
@@ -59,6 +60,7 @@ public class furniture extends AppCompatActivity {
     private GoogleSignInAccount account;
 
     private static int currentSort;
+    private static int currentFilter = 0;
 
 
     @Override
@@ -97,6 +99,7 @@ public class furniture extends AppCompatActivity {
 
     private void getProducts() {//sort value = 0
         currentSort = 0;
+        currentFilter = 0;
         showDialog(1);
         productList.clear();
         productAdapter.clear();
@@ -106,19 +109,21 @@ public class furniture extends AppCompatActivity {
             public void run() {
                 Query query;
                 query = FirebaseDatabase.getInstance().getReference()
-                        .child("furniture")
-                        .orderByKey();
+                            .child("furniture")
+                            .orderByKey();
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
 
                         for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
                             productList.add(productSnapshot.getValue(product.class));
                         }
-                        //productAdapter = new com.example.muj.goldenfurniture.ProductAdapter(furniture.this, productList);
                         listView.setAdapter(productAdapter);
                         progressBar.cancel();
+
+
                     }
 
                     @Override
@@ -131,87 +136,8 @@ public class furniture extends AppCompatActivity {
             }
         });
         thread.start();
-        return;
+
     }
-
-    private void getProductsAsc() {//sort value 1
-        currentSort = 1;
-        showDialog(1);
-        productList.clear();
-        productAdapter.clear();
-        listView.setAdapter(productAdapter);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Query query;
-                query = FirebaseDatabase.getInstance().getReference()
-                        .child("furniture")
-                        .orderByChild("price");
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
-                            productList.add(productSnapshot.getValue(product.class));
-                        }
-                        //productAdapter = new com.example.muj.goldenfurniture.ProductAdapter(furniture.this, productList);
-                        listView.setAdapter(productAdapter);
-                        progressBar.cancel();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-        thread.start();
-        return;
-    }
-
-    private void getProductsDesc() {//sort value 2
-        currentSort = 2;
-        showDialog(1);
-        productList.clear();
-        productAdapter.clear();
-        listView.setAdapter(productAdapter);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Query query;
-                query = FirebaseDatabase.getInstance().getReference()
-                        .child("furniture")
-                        .orderByChild("price");
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
-                            productList.add(productSnapshot.getValue(product.class));
-                        }
-                        Collections.reverse(productList);
-                        listView.setAdapter(productAdapter);
-                        progressBar.cancel();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-        thread.start();
-        return;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_furniture, menu);
@@ -221,13 +147,24 @@ public class furniture extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.logout) {
+        if (id == R.id.logout)
+        {
             firebaseAuth.getInstance().signOut();
             finish();
             startActivity(new Intent(this, MainActivity.class));
-        } else if (id == R.id.Sort) {
+        }
+        else if (id == R.id.Sort) {
             sortProducts();
             alertDialog.show();
+        }
+        else if (id == R.id.filter)
+        {
+            filterProducts();
+            alertDialog.show();
+        }
+        else if (id == R.id.action_cart)
+        {
+            startActivity(new Intent(this,CartActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -249,15 +186,27 @@ public class furniture extends AppCompatActivity {
                         }
                         else if (which == 1)
                         {
-                            if (currentSort != 1)
-                                getProductsAsc();
+                            currentSort = 1;
+                            Collections.sort(productList, new Comparator<product>() {
+                                @Override
+                                public int compare(product o2, product o1) {
+                                    return o1.getPrice() > o2.getPrice() ? -1 : (o1.getPrice() < o2.getPrice()) ? 1 : 0;
+                                }
+                            });
+                            listView.setAdapter(productAdapter);
                             alertDialog.dismiss();
 
                         }
                         else if (which == 2)
                         {
-                            if (currentSort != 2)
-                                getProductsDesc();
+                            currentSort = 2;
+                            Collections.sort(productList, new Comparator<product>() {
+                                @Override
+                                public int compare(product o1, product o2) {
+                                    return o1.getPrice() > o2.getPrice() ? -1 : (o1.getPrice() < o2.getPrice()) ? 1 : 0;
+                                }
+                            });
+                            listView.setAdapter(productAdapter);
                             alertDialog.dismiss();
 
 
@@ -269,6 +218,76 @@ public class furniture extends AppCompatActivity {
 
     }
 
+    private void filterProducts()
+    {
+        String[] options = {"All","Almirah", "Plastic Chair","Revolving Chair"};
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Category")
+                .setSingleChoiceItems(options, currentFilter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        if (which == 0)
+                        {
+                            if (currentFilter != 0)
+                                getProducts();
+                            Log.d("After", "getProducts call ");
+                            alertDialog.dismiss();
+                        }
+                        else if(which == 1)
+                        {
+                            currentFilter = 1;
+                            product p;
+                            for (int i=0; i<productList.size();i++)
+                            {
+                                p = productList.get(i);
+                                if (!p.getCategory().equals("Almirah"))
+                                {
+                                    productList.remove(i);
+                                    i--;
+                                }
+                            }
+                            listView.setAdapter(productAdapter);
+                            alertDialog.dismiss();
+                        }
+                        else if (which == 2)
+                        {
+                            currentFilter = 2;
+                            product p;
+                            for (int i=0; i<productList.size();i++)
+                            {
+                                Log.d("After", "getProducts call ");
+                                p = productList.get(i);
+                                if (!p.getCategory().equals("Plastic Chair"))
+                                {
+                                    productList.remove(i);
+                                    i--;
+                                }
+                            }
+                            listView.setAdapter(productAdapter);
+                            alertDialog.dismiss();
+                        }
+                        else if (which == 3)
+                        {
+                            currentFilter = 3;
+                            product p;
+                            for (int i=0; i<productList.size();i++)
+                            {
+                                p = productList.get(i);
+                                if (!p.getCategory().equals("Revolving Chair"))
+                                {
+                                    productList.remove(i);
+                                    i--;
+                                }
+                            }
+                            listView.setAdapter(productAdapter);
+                            alertDialog.dismiss();
+                        }
+
+                    }
+                });
+        alertDialog = builder.create();
+    }
 
 
 

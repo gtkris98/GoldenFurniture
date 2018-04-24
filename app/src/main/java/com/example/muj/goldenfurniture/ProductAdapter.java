@@ -15,7 +15,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.muj.goldenfurniture.database.Cart;
 import com.example.muj.goldenfurniture.database.product;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -89,7 +92,11 @@ public class ProductAdapter extends ArrayAdapter<product>
 
         buttonCart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                Cart cart = new Cart(FirebaseAuth.getInstance().getCurrentUser().getUid(),currentProduct.getBrand(),currentProduct.getModel(),currentProduct.getPrice(),currentProduct.getImage());
+                FirebaseDatabase.getInstance().getReference().child("cart").push().setValue(cart);
+                Toast.makeText(getContext(),"Item added to cart",Toast.LENGTH_SHORT).show();
 
             }
         });

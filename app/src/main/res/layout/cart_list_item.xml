@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+
+        android:id="@+id/cart_image_furniture"
+        android:layout_width="40dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:contentDescription="Image"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/aa" />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cart_tv_furniture_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="20sp"
+                tools:text="Golden Furniture Almirah" />
+
+            <TextView
+                android:id="@+id/cart_tv_furniture_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="12sp"
+                tools:text="Amount : Rs.15000" />
+
+        </LinearLayout>
+
+    <Button
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/cart_delete_item"
+        android:text="Delete"
+        android:textSize="8sp"
+        android:layout_width="50dp"
+        android:layout_height="30dp" />
+
+
+
+
+
+</LinearLayout>

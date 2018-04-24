@@ -51,7 +51,7 @@ public class BuyNowActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         amount = Integer.valueOf(bundle.getString("amount"));
-        totalAmount.setText("Amont : "+amount);
+        totalAmount.setText("Amount : "+amount);
         productModel = bundle.getString("model");
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
