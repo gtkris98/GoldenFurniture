@@ -34,78 +34,78 @@ public class ProductAdapter extends ArrayAdapter<product>
         super(context, resource, productArrayList);
     }
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent)
+public View getView(final int position, View convertView, ViewGroup parent)
+{
+    View listItemView = convertView;
+    if (listItemView == null)
     {
-        View listItemView = convertView;
-        if (listItemView == null)
-        {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item, parent, false);
-
-        }
-        final product currentProduct = getItem(position);
-
-        TextView nameTextView = listItemView.findViewById(R.id.tv_furniture_name);
-        TextView sizeTextView =  listItemView.findViewById(R.id.tv_furniture_size);
-        TextView priceTextView = listItemView.findViewById(R.id.tv_furniture_price);
-        ImageView productImage = listItemView.findViewById(R.id.image_furniture);
-        Button buttonCart = listItemView.findViewById(R.id.button_cart);
-        Button buttonBuyNow = listItemView.findViewById(R.id.button_buy);
-
-        nameTextView.setText(currentProduct.getBrand()+" "+currentProduct.getModel());
-        sizeTextView.setText("Size : "+currentProduct.getSize());
-        priceTextView.setText("Rs. "+String.valueOf(currentProduct.getPrice()));
-        Glide.with(productImage.getContext())
-                .load(currentProduct.getImage())
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(productImage);
-
-
-        productImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(),ShowProduct.class);
-                Bundle bundle = new Bundle();
-                String photoUrl = currentProduct.getImage();
-                bundle.putString("url",photoUrl);
-                intent.putExtras(bundle);
-                getContext().startActivity(intent);
-            }
-        });
-
-        buttonBuyNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(getContext(),BuyNowActivity.class);
-                Bundle bundle = new Bundle();
-                String amount = String.valueOf(currentProduct.getPrice());
-                String productModel = currentProduct.getModel();
-                bundle.putString("amount",amount);
-                bundle.putString("model",productModel);
-                intent.putExtras(bundle);
-                getContext().startActivity(intent);
-
-            }
-        });
-
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Cart cart = new Cart(FirebaseAuth.getInstance().getCurrentUser().getUid(),currentProduct.getBrand(),currentProduct.getModel(),currentProduct.getPrice(),currentProduct.getImage());
-                FirebaseDatabase.getInstance().getReference().child("cart").push().setValue(cart);
-                Toast.makeText(getContext(),"Item added to cart",Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-        return listItemView;
+        listItemView = LayoutInflater.from(getContext()).inflate(
+                R.layout.list_item, parent, false);
 
     }
+    final product currentProduct = getItem(position);
+
+    TextView nameTextView = listItemView.findViewById(R.id.tv_furniture_name);
+    TextView sizeTextView =  listItemView.findViewById(R.id.tv_furniture_size);
+    TextView priceTextView = listItemView.findViewById(R.id.tv_furniture_price);
+    ImageView productImage = listItemView.findViewById(R.id.image_furniture);
+    Button buttonCart = listItemView.findViewById(R.id.button_cart);
+    Button buttonBuyNow = listItemView.findViewById(R.id.button_buy);
+
+    nameTextView.setText(currentProduct.getBrand()+" "+currentProduct.getModel());
+    sizeTextView.setText("Size : "+currentProduct.getSize());
+    priceTextView.setText("Rs. "+String.valueOf(currentProduct.getPrice()));
+    Glide.with(productImage.getContext())
+            .load(currentProduct.getImage())
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(productImage);
+
+
+    productImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getContext(),ShowProduct.class);
+            Bundle bundle = new Bundle();
+            String photoUrl = currentProduct.getImage();
+            bundle.putString("url",photoUrl);
+            intent.putExtras(bundle);
+            getContext().startActivity(intent);
+        }
+    });
+
+    buttonBuyNow.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent(getContext(),BuyNowActivity.class);
+            Bundle bundle = new Bundle();
+            String amount = String.valueOf(currentProduct.getPrice());
+            String productModel = currentProduct.getModel();
+            bundle.putString("amount",amount);
+            bundle.putString("model",productModel);
+            intent.putExtras(bundle);
+            getContext().startActivity(intent);
+
+        }
+    });
+
+    buttonCart.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            Cart cart = new Cart(FirebaseAuth.getInstance().getCurrentUser().getUid(),currentProduct.getBrand(),currentProduct.getModel(),currentProduct.getPrice(),currentProduct.getImage());
+            FirebaseDatabase.getInstance().getReference().child("cart").push().setValue(cart);
+            Toast.makeText(getContext(),"Item added to cart",Toast.LENGTH_SHORT).show();
+
+        }
+    });
+
+
+
+    return listItemView;
+
+}
 
 
 }

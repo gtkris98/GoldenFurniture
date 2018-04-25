@@ -90,7 +90,7 @@ public class CartActivity extends AppCompatActivity
                 Intent intent = new Intent(CartActivity.this,BuyNowActivity.class);
                 Bundle bundle = new Bundle();
                 String amount = String.valueOf(totalAmount);
-                String productModel = products;
+                String productModel = products.substring(0,products.length()-2);
                 bundle.putString("amount",amount);
                 bundle.putString("model",productModel);
                 intent.putExtras(bundle);

@@ -68,7 +68,7 @@ public class BuyNowActivity extends AppCompatActivity {
                 if (addressIsNotEmpty)
                 {
                     String Address = et1.getText().toString().trim() + ", " + et2.getText().toString().trim() + ", " + et3.getText().toString().trim() + ", " + et4.getText().toString().trim() + ", " + et5.getText().toString().trim();
-                    orders newOrder = new orders(firebaseAuth.getCurrentUser().getUid(), Address, productModel, amount, Calendar.getInstance().getTimeInMillis() / 1000L);
+                    orders newOrder = new orders(firebaseAuth.getCurrentUser().getUid(), Address, productModel, "Pending", amount, Calendar.getInstance().getTimeInMillis());
                     mMessagesDatabaseRefrence.push().setValue(newOrder);
                     //finish();
                     AlertDialog.Builder builder = new AlertDialog.Builder(BuyNowActivity.this);

@@ -1,20 +1,23 @@
 package com.example.muj.goldenfurniture.database;
 
+import android.util.Log;
+
 import java.util.Calendar;
 
 public class orders
 {
-    String userId,deliveryAddress,productModel;
+    String userId,deliveryAddress,productModel,status;
     int amount;
-    long unixTimeStamp;
+    Long unixTimeStamp;
 
     public orders() {
     }
 
-    public orders(String userId, String deliveryAddress, String productModel, int amount, long unixTimeStamp) {
+    public orders(String userId, String deliveryAddress, String productModel, String status, int amount, Long unixTimeStamp) {
         this.userId = userId;
         this.deliveryAddress = deliveryAddress;
         this.productModel = productModel;
+        this.status = status;
         this.amount = amount;
         this.unixTimeStamp = unixTimeStamp;
     }
@@ -31,7 +34,11 @@ public class orders
         return productModel;
     }
 
-    public long getUnixTimeStamp() {
+    public String getStatus() {
+        return status;
+    }
+
+    public Long getUnixTimeStamp() {
         return unixTimeStamp;
     }
 

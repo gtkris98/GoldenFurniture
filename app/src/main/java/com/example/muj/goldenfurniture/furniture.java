@@ -166,6 +166,10 @@ public class furniture extends AppCompatActivity {
         {
             startActivity(new Intent(this,CartActivity.class));
         }
+        else if (id == R.id.my_order)
+        {
+            startActivity(new Intent(this,OrderActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }
