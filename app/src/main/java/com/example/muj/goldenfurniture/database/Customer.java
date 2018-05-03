@@ -9,6 +9,9 @@ public class Customer
     String customer_id,phone;
     String email,customer_name, photo_id;
 
+    public Customer() {
+    }
+
     public Customer(String customer_id, String phone, String email, String customer_name, String photo_id)
     {
         this.customer_id = customer_id;
@@ -36,5 +39,25 @@ public class Customer
 
     public String getCustomer_name() {
         return customer_name;
+    }
+
+    public void setCustomer_id(String customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public void setPhoto_id(String photo_id) {
+        this.photo_id = photo_id;
     }
 }

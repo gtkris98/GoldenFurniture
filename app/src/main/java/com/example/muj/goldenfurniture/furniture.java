@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,7 @@ public class furniture extends AppCompatActivity {
     private ProgressDialog progressBar;
     ArrayList<product> productList;
     AlertDialog.Builder builder;
+    private static final String websiteUrl = "https://manangautam121996.000webhostapp.com/";
 
     private FirebaseAuth firebaseAuth;
     private GoogleSignInAccount account;
@@ -169,6 +171,16 @@ public class furniture extends AppCompatActivity {
         else if (id == R.id.my_order)
         {
             startActivity(new Intent(this,OrderActivity.class));
+        }
+        else if (id == R.id.action_settings)
+        {
+            startActivity(new Intent(this,SettingsActivity.class));
+        }
+        else if (id == R.id.website)
+        {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(websiteUrl));
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
